@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fineprint AI Settings</title>
+    <link rel="stylesheet" href="options.css">
+</head>
+<body>
+    <div class="settings-container">
+        <div class="header">
+            <div class="logo">
+                <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                    <path d="M2 17l10 5 10-5"/>
+                    <path d="M2 12l10 5 10-5"/>
+                </svg>
+                <h1>Fineprint AI Settings</h1>
+            </div>
+            <p class="subtitle">Configure your AI-powered document analysis</p>
+        </div>
+
+        <div class="settings-content">
+            <div class="settings-section">
+                <h2>AI Analysis Mode</h2>
+                <div class="free-mode-banner">
+                    <div class="success-badge">FREE MODE ENABLED</div>
+                    <p>Your extension works completely free with smart pattern recognition analysis. No API costs required!</p>
+                </div>
+                
+                <div class="setting-item">
+                    <label for="apiKey">OpenAI API Key (Optional Premium)</label>
+                    <div class="input-group">
+                        <input type="password" id="apiKey" placeholder="Leave empty for free mode">
+                        <button type="button" id="toggleApiKey" class="toggle-btn">👁️</button>
+                    </div>
+                    <p class="setting-description">
+                        Optional: Add your OpenAI API key for premium AI analysis. 
+                        <a href="https://platform.openai.com/api-keys" target="_blank">Get API key here</a>
+                    </p>
+                    <div class="api-status" id="apiStatus">
+                        <span class="status-indicator" id="statusIndicator"></span>
+                        <span id="statusText">Free mode active</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="settings-section">
+                <h2>Scanning Preferences</h2>
+                <div class="setting-item">
+                    <div class="toggle-setting">
+                        <div class="toggle-info">
+                            <label for="autoScan">Automatic Scanning</label>
+                            <p class="setting-description">Automatically detect and offer to scan Terms of Service and Privacy Policy pages</p>
+                        </div>
+                        <div class="toggle-switch">
+                            <input type="checkbox" id="autoScan" checked>
+                            <label for="autoScan" class="slider"></label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="setting-item">
+                    <label for="scanSensitivity">Detection Sensitivity</label>
+                    <select id="scanSensitivity">
+                        <option value="high">High - Detect all legal documents</option>
+                        <option value="medium" selected>Medium - Standard TOS/Privacy detection</option>
+                        <option value="low">Low - Only obvious legal pages</option>
+                    </select>
+                    <p class="setting-description">Adjust how sensitive the extension is when detecting legal documents</p>
+                </div>
+            </div>
+
+            <div class="settings-section">
+                <h2>Visual Theme</h2>
+                <div class="setting-item">
+                    <label>Choose your theme</label>
+                    <div class="theme-selector">
+                        <div class="theme-option" data-theme="cyberpunk">
+                            <div class="theme-preview cyberpunk-theme">
+                                <div class="theme-accent"></div>
+                                <div class="theme-bg"></div>
+                            </div>
+                            <span>Cyberpunk</span>
+                        </div>
+                        <div class="theme-option" data-theme="midnight">
+                            <div class="theme-preview midnight-theme">
+                                <div class="theme-accent"></div>
+                                <div class="theme-bg"></div>
+                            </div>
+                            <span>Midnight</span>
+                        </div>
+                        <div class="theme-option" data-theme="lightglass">
+                            <div class="theme-preview lightglass-theme">
+                                <div class="theme-accent"></div>
+                                <div class="theme-bg"></div>
+                            </div>
+                            <span>Light Glass</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="settings-section">
+                <h2>Data Management</h2>
+                <div class="setting-item">
+                    <div class="data-stats" id="dataStats">
+                        <div class="stat-item">
+                            <span class="stat-number" id="scanCount">0</span>
+                            <span class="stat-label">Scans Performed</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" id="storageUsed">0KB</span>
+                            <span class="stat-label">Storage Used</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="setting-item">
+                    <div class="action-buttons">
+                        <button class="action-btn export-btn" id="exportData">
+                            📤 Export Data
+                        </button>
+                        <button class="action-btn import-btn" id="importData">
+                            📥 Import Data
+                        </button>
+                        <button class="action-btn danger-btn" id="clearData">
+                            🗑️ Clear All Data
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="settings-section">
+                <h2>About</h2>
+                <div class="setting-item">
+                    <div class="about-info">
+                        <div class="version-info">
+                            <strong>Fineprint AI v1.0.0</strong>
+                            <p>AI-powered Terms of Service and Privacy Policy analyzer</p>
+                        </div>
+                        <div class="links">
+                            <a href="#" id="showHelp">Help & Support</a>
+                            <a href="#" id="showPrivacy">Privacy Policy</a>
+                            <a href="#" id="reportIssue">Report Issue</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="save-status" id="saveStatus"></div>
+            <div class="footer-actions">
+                <button class="action-btn secondary" id="resetSettings">Reset to Defaults</button>
+                <button class="action-btn primary" id="saveSettings">Save Settings</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hidden file input for import -->
+    <input type="file" id="fileInput" accept=".json" style="display: none;">
+
+    <script src="options.js"></script>
+</body>
+</html>

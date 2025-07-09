@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fineprint AI</title>
+    <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo floating-animation">
+                <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                    <path d="M2 17l10 5 10-5"/>
+                    <path d="M2 12l10 5 10-5"/>
+                </svg>
+                <h1>Fineprint AI</h1>
+            </div>
+            <div class="scan-status" id="scanStatus">
+                <div class="radar-scanner" id="radarScanner"></div>
+                <span id="statusText">Ready to scan</span>
+            </div>
+        </div>
+
+        <div class="main-content" id="mainContent">
+            <div class="scan-section">
+                <button class="scan-btn" id="scanBtn">
+                    <span class="btn-icon">🔍</span>
+                    Scan Current Page
+                </button>
+                <div class="auto-detect-info" id="autoDetectInfo"></div>
+            </div>
+
+            <div class="results-section" id="resultsSection" style="display: none;">
+                <div class="transparency-score" id="transparencyScore">
+                    <div class="score-circle">
+                        <span class="score-letter" id="scoreLetter">-</span>
+                    </div>
+                    <div class="score-info">
+                        <h3>Transparency Grade</h3>
+                        <p id="scoreDescription">Not analyzed yet</p>
+                    </div>
+                </div>
+
+                <div class="tabs">
+                    <button class="tab active" data-tab="summary">Summary</button>
+                    <button class="tab" data-tab="redflags">Red Flags</button>
+                    <button class="tab" data-tab="insights">Insights</button>
+                </div>
+
+                <div class="tab-content">
+                    <div class="tab-panel active" id="summary">
+                        <ul class="summary-list" id="summaryList"></ul>
+                    </div>
+                    <div class="tab-panel" id="redflags">
+                        <div class="red-flags-list" id="redFlagsList"></div>
+                    </div>
+                    <div class="tab-panel" id="insights">
+                        <div class="insights-content" id="insightsContent"></div>
+                    </div>
+                </div>
+
+                <div class="actions">
+                    <button class="action-btn share-btn" id="shareBtn">
+                        <span>📤</span> Share
+                    </button>
+                    <button class="action-btn save-btn" id="saveBtn">
+                        <span>💾</span> Save
+                    </button>
+                </div>
+            </div>
+
+            <div class="history-section">
+                <h3>Recent Scans</h3>
+                <div class="history-list" id="historyList">
+                    <div class="empty-state">No scans yet. Start by scanning a Terms of Service or Privacy Policy page!</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <button class="settings-btn" id="settingsBtn">⚙️ Settings</button>
+        </div>
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+</html>
